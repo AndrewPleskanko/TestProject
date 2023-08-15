@@ -16,7 +16,7 @@ public class DBUtils {
         Properties properties = new Properties();
         try {
             Class.forName("org.postgresql.Driver");
-            fileInputStream = new FileInputStream("C:\\Users\\legen\\Desktop\\demo3\\src\\main\\resources\\config.properties");
+            fileInputStream = new FileInputStream("C:\\Users\\legen\\Desktop\\UserList\\src\\main\\resources\\config.properties");
             properties.load(fileInputStream);
             dbUrl = properties.getProperty("db_host");
             dbUsername = properties.getProperty("db_username");

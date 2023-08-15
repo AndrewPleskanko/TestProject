@@ -1,4 +1,4 @@
-package com.example.UserList.controller;
+package com.example.UserList.filter;
 
 import jakarta.servlet.*;
 import jakarta.servlet.annotation.WebFilter;
@@ -8,7 +8,7 @@ import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 
-@WebFilter("/*")
+@WebFilter("/fil/*")
 public class AccessFilter implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
             throws IOException, ServletException {
@@ -16,13 +16,13 @@ public class AccessFilter implements Filter {
         HttpServletResponse httpResponse = (HttpServletResponse) response;
 
         HttpSession session = httpRequest.getSession();
-        String username = (String) session.getAttribute("username");
+        String login = (String) session.getAttribute("login");
 
         // Перевіряємо, чи користувач зареєстрований
-        if (username == null) {
+        if (login == null) {
 
             // Користувач не зареєстрований, перенаправляємо його на сторінку реєстрації
-           httpResponse.sendRedirect("/demo3_war_exploded/userWelcome.jsp");
+           httpResponse.sendRedirect("/UserList_war/userRegister.jsp");
         } else {
             // Користувач зареєстрований, дозволяємо доступ до контенту
             chain.doFilter(request, response);

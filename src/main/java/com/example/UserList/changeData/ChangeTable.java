@@ -24,20 +24,23 @@ public class ChangeTable extends HttpServlet {
         if ("update".equals(action)) {
             int userId = Integer.parseInt(req.getParameter("userId"));
             String query = "SELECT * FROM users WHERE id =" + userId;
-            List<User> userList = UserDAO.read(query);
+            UserDAO userDao = new UserDAO();
+            List<User> userList = userDao.read(query);
             req.setAttribute("userList", userList);
 
             req.getRequestDispatcher("userUpdate.jsp").forward(req, resp);
         } else if ("delete".equals(action)) {
             int userId = Integer.parseInt(req.getParameter("userId"));
             String query = "DELETE FROM users WHERE id = " + userId;
-            UserDAO.delete(query);
+            UserDAO userDao = new UserDAO();
+            userDao.delete(query);
 
-            resp.sendRedirect("/demo3_war_exploded/usersList");
+            resp.sendRedirect("/UserList_war/usersList");
         } else if ("search".equals(action)) {
             String searchText = req.getParameter("searchText");
             String query = "SELECT * FROM users WHERE first_name LIKE '%" + searchText + "%' OR last_name LIKE '%" + searchText + "%' OR login LIKE '%" + searchText + "%'";
-            List<User> userList = UserDAO.read(query);
+            UserDAO userDao = new UserDAO();
+            List<User> userList = userDao.read(query);
             if (userList.isEmpty()){
                 req.setAttribute("hint", "User not found. Try write something else");
             }

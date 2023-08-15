@@ -2,6 +2,7 @@ package com.example.UserList.controller;
 
 
 import com.example.UserList.data.UserDAO;
+import com.example.UserList.service.Validate;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -14,7 +15,7 @@ import java.io.IOException;
 public class Registration extends HttpServlet {
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         String firstName = request.getParameter("firstName");
@@ -22,36 +23,17 @@ public class Registration extends HttpServlet {
         String login = request.getParameter("login");
         String password = request.getParameter("password");
 
-        if (!isMoreThree(firstName)) {
-            request.setAttribute("errorName", "Invalid login format. Name must be at least 3 characters long");
+        request.setAttribute("firstName", firstName);
+        request.setAttribute("lastName", lastName);
+        request.setAttribute("login", login);
+        request.setAttribute("password", password);
+        Validate validate = new Validate();
+        if(validate.validateData(firstName, lastName, login, password, request, response)){
             request.getRequestDispatcher("userRegister.jsp").forward(request, response);
-            return;
         }
-        if (!isMoreThree(lastName)) {
-            request.setAttribute("errorSurname", "Invalid login format. Surname must be at least 3 characters long");
-            request.getRequestDispatcher("userRegister.jsp").forward(request, response);
-            return;
-        }
-        if (!isValidLogin(login)) {
-            request.setAttribute("errorLogin", "Please enter a valid Gmail address!");
-            request.getRequestDispatcher("userRegister.jsp").forward(request, response);
-            return;
-        }
-        if (!isMoreThree(password)) {
-            request.setAttribute("errorPassword", "Invalid login format. Password must be at least 3 characters long");
-            request.getRequestDispatcher("userRegister.jsp").forward(request, response);
-            return;
-        }
-
-        UserDAO.create(firstName, lastName, login, password);
-        request.getRequestDispatcher("logIn.jsp");
+        UserDAO userDao = new UserDAO();
+        userDao.create(firstName, lastName, login, password);
+        request.getRequestDispatcher("logIn.jsp").forward(request, response);
     }
 
-    private boolean isValidLogin(String email) {
-        return email.toLowerCase().endsWith("@gmail.com");
-    }
-
-    private boolean isMoreThree(String name) {
-        return name.length() > 2;
-    }
 }

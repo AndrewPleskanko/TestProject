@@ -2,6 +2,7 @@ package com.example.UserList.changeData;
 
 import com.example.UserList.data.UserDAO;
 import com.example.UserList.data.User;
+import com.example.UserList.service.Validate;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -21,34 +22,23 @@ public class UpdateTable extends HttpServlet {
         String login = req.getParameter("login");
         String password = req.getParameter("password");
 
+        req.setAttribute("firstName", firstName);
+        req.setAttribute("lastName", lastName);
+        req.setAttribute("login", login);
+        req.setAttribute("password", password);
+
         ArrayList<User> user = new ArrayList<User>();
         user.add(0, new User(userId, firstName, lastName, login, password));
         req.setAttribute("userList", user);
-
-        if (!isMoreThree(firstName)) {
-            req.setAttribute("errorName", "Invalid login format. Name must be at least 3 characters long");
-            req.getRequestDispatcher("userUpdate.jsp").forward(req, resp);
-            return;
-        }
-        if (!isMoreThree(lastName)) {
-            req.setAttribute("errorSurname", "Invalid login format. Surname must be at least 3 characters long");
-            req.getRequestDispatcher("userUpdate.jsp").forward(req, resp);
-            return;
-        }
-        if (!isValidLogin(login)) {
-            req.setAttribute("errorLogin", "Please enter a valid Gmail address!");
-            req.getRequestDispatcher("userUpdate.jsp").forward(req, resp);
-            return;
-        }
-        if (!isMoreThree(password)) {
-            req.setAttribute("errorPassword", "Invalid login format. Password must be at least 3 characters long");
-            req.getRequestDispatcher("userUpdate.jsp").forward(req, resp);
-            return;
+        Validate validate = new Validate();
+        if(validate.validateData(firstName, lastName, login, password, req, resp)){
+            req.getRequestDispatcher("/update").forward(req, resp);
         }
         String query = "UPDATE users SET first_name = ?, last_name = ?, login = ?, password = ? WHERE id = ?";
-        UserDAO.update(query, firstName, lastName, login, password, userId);
+        UserDAO userDao = new UserDAO();
+        userDao.update(query, firstName, lastName, login, password, userId);
 
-        resp.sendRedirect("/demo3_war_exploded/usersList");
+        resp.sendRedirect("/UserList_war/usersList");
     }
 
     private boolean isValidLogin(String email) {

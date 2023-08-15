@@ -14,7 +14,7 @@
 
 <div class="container">
     <h1 class="text-center">Employee Register Form</h1>
-    <form action="${pageContext.request.contextPath}/register" method="post">
+    <form action="${pageContext.request.contextPath}/register" method="GET">
         <div class="form-group row">
             <label for="firstName" class="col-sm-2 col-form-label">First Name</label>
             <div class="col-sm-10">

@@ -6,9 +6,9 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserDAO {
-
-    public static List<User> read(String query) {
+public class UserDAO implements IUserDAO {
+    @Override
+    public List<User> read(String query) {
         List<User> users = new ArrayList<>();
         try (Connection connection = DBUtils.getConnect()) {
             try (Statement statement = connection.createStatement();
@@ -30,7 +30,8 @@ public class UserDAO {
         return users;
     }
 
-    public static void create(String name, String surname, String login, String password) {
+    @Override
+    public void create(String name, String surname, String login, String password) {
         try (Connection connection = DBUtils.getConnect()) {
             String sql = "INSERT INTO users (first_name, last_name, login, password) VALUES (?, ?, ?, ?)";
 
@@ -45,7 +46,20 @@ public class UserDAO {
         }
     }
 
-    public static void update(String queryOp, String firstName, String lastName, String login, String password, int userId) {
+    @Override
+    public void delete(String queryOp) {
+        try (Connection connection = DBUtils.getConnect();
+             PreparedStatement statement = connection.prepareStatement(queryOp)) {
+
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    @Override
+    public void update(String queryOp, String firstName, String lastName, String login, String password, int userId) {
         try (Connection connection = DBUtils.getConnect();
              PreparedStatement statement = connection.prepareStatement(queryOp)) {
             statement.setString(1, firstName);
@@ -59,14 +73,28 @@ public class UserDAO {
         }
     }
 
-    public static void delete(String queryOp) {
+    @Override
+    public boolean isUserExist(String login, String password) {
+        String queryOp = "SELECT COUNT(*) FROM users WHERE login = ? AND password = ?";
+        boolean userExists = false;
+
         try (Connection connection = DBUtils.getConnect();
              PreparedStatement statement = connection.prepareStatement(queryOp)) {
+            statement.setString(1, login);
+            statement.setString(2, password);
 
-            statement.executeUpdate();
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+                    int count = resultSet.getInt(1);
+                    userExists = count > 0;
+                }
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+        return userExists;
+
     }
 
 }
