@@ -1,6 +1,8 @@
 package com.example.UserList.service;
 
-public class CheckCorrectDate implements ICheckCorrectDate{
+import com.example.UserList.data.UserDAO;
+
+public class CheckCorrectDate implements ICheckCorrectDate {
 
     @Override
     public boolean isValidLogin(String email) {
@@ -10,5 +12,11 @@ public class CheckCorrectDate implements ICheckCorrectDate{
     @Override
     public boolean isMoreThree(String name) {
         return name.length() > 2;
+    }
+
+    @Override
+    public boolean isEmailExist(String email) {
+        UserDAO userDao = new UserDAO();
+        return userDao.isEmailExist(email);
     }
 }

@@ -1,5 +1,6 @@
 package com.example.UserList.data;
 
+import com.example.UserList.QueryString;
 import com.example.UserList.dbUtils.DBUtils;
 
 import java.sql.*;
@@ -10,18 +11,17 @@ public class UserDAO implements IUserDAO {
     @Override
     public List<User> read(String query) {
         List<User> users = new ArrayList<>();
-        try (Connection connection = DBUtils.getConnect()) {
-            try (Statement statement = connection.createStatement();
-                 ResultSet resultSet = statement.executeQuery(query)) {
-                while (resultSet.next()) {
-                    int id = resultSet.getInt("id");
-                    String first_name = resultSet.getString("first_name");
-                    String last_name = resultSet.getString("last_name");
-                    String login = resultSet.getString("login");
-                    String password = resultSet.getString("password");
+        try (Connection connection = DBUtils.getConnect();
+             Statement statement = connection.createStatement();
+             ResultSet resultSet = statement.executeQuery(query)) {
+            while (resultSet.next()) {
+                int id = resultSet.getInt("id");
+                String first_name = resultSet.getString("first_name");
+                String last_name = resultSet.getString("last_name");
+                String login = resultSet.getString("login");
+                String password = resultSet.getString("password");
 
-                    users.add(new User(id, first_name, last_name, login, password));
-                }
+                users.add(new User(id, first_name, last_name, login, password));
             }
 
         } catch (SQLException e) {
@@ -33,9 +33,9 @@ public class UserDAO implements IUserDAO {
     @Override
     public void create(String name, String surname, String login, String password) {
         try (Connection connection = DBUtils.getConnect()) {
-            String sql = "INSERT INTO users (first_name, last_name, login, password) VALUES (?, ?, ?, ?)";
+            String query = QueryString.getAllUser;
 
-            PreparedStatement statement = connection.prepareStatement(sql);
+            PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1, name);
             statement.setString(2, surname);
             statement.setString(3, login);
@@ -75,18 +75,46 @@ public class UserDAO implements IUserDAO {
 
     @Override
     public boolean isUserExist(String login, String password) {
-        String queryOp = "SELECT COUNT(*) FROM users WHERE login = ? AND password = ?";
+        String query = QueryString.searchLoginAndPassword;
         boolean userExists = false;
 
         try (Connection connection = DBUtils.getConnect();
-             PreparedStatement statement = connection.prepareStatement(queryOp)) {
+             PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setString(1, login);
             statement.setString(2, password);
+            ResultSet resultSet = statement.executeQuery();
 
-            try (ResultSet resultSet = statement.executeQuery()) {
-                if (resultSet.next()) {
-                    int count = resultSet.getInt(1);
-                    userExists = count > 0;
+            if (resultSet.next()) {
+                int count = resultSet.getInt(1);
+                userExists = count > 0;
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return userExists;
+
+    }
+
+    @Override
+    public boolean isEmailExist(String email) {
+        boolean userExists = false;
+        String query = QueryString.isEmailExist;
+
+        try (Connection connection = DBUtils.getConnect();
+             PreparedStatement statement = connection.prepareStatement(query)) {
+
+            statement.setString(1, email); // Встановити значення параметру
+
+            ResultSet resultSet = statement.executeQuery();
+
+            int userCount = 0;
+            if (resultSet.next()) {
+                userCount = resultSet.getInt("user_count");
+
+                if (userCount >= 1) {
+                    userExists = true;
                 }
             }
         } catch (SQLException e) {
@@ -94,7 +122,6 @@ public class UserDAO implements IUserDAO {
         }
 
         return userExists;
-
     }
 
 }

@@ -1,6 +1,7 @@
 package com.example.UserList.controller;
 
 
+import com.example.UserList.changeData.DataGetAndSet;
 import com.example.UserList.data.UserDAO;
 import com.example.UserList.service.Validate;
 import jakarta.servlet.ServletException;
@@ -18,18 +19,17 @@ public class Registration extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String firstName = request.getParameter("firstName");
-        String lastName = request.getParameter("lastName");
-        String login = request.getParameter("login");
-        String password = request.getParameter("password");
+        DataGetAndSet dataGetAndSet = new DataGetAndSet();
+        String[] data = dataGetAndSet.getAndSet(request);
 
-        request.setAttribute("firstName", firstName);
-        request.setAttribute("lastName", lastName);
-        request.setAttribute("login", login);
-        request.setAttribute("password", password);
+        String firstName = data[0];
+        String lastName = data[1];
+        String login = data[2];
+        String password = data[3];
         Validate validate = new Validate();
-        if(validate.validateData(firstName, lastName, login, password, request, response)){
+        if (validate.validateData(firstName, lastName, login, password, request, response)) {
             request.getRequestDispatcher("userRegister.jsp").forward(request, response);
+            return;
         }
         UserDAO userDao = new UserDAO();
         userDao.create(firstName, lastName, login, password);

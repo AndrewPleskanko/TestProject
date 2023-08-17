@@ -1,5 +1,6 @@
 package com.example.UserList.controller;
 
+import com.example.UserList.data.User;
 import com.example.UserList.data.UserDAO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -9,6 +10,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
+import java.util.List;
 
 @WebServlet("/logIn")
 public class LogIn extends HttpServlet {
@@ -26,6 +28,8 @@ public class LogIn extends HttpServlet {
         }
         HttpSession session = req.getSession();
         session.setAttribute("login", login);
-        req.getRequestDispatcher("/fil/usersList").forward(req, resp);
+        List<User> userList = userDao.read("SELECT * FROM users");
+        req.setAttribute("userList", userList);
+        req.getRequestDispatcher("/usersList").forward(req, resp);
     }
 }

@@ -21,10 +21,15 @@ public class Validate {
             request.setAttribute("errorSurname", "Invalid lastName format. Surname must be at least 3 characters long");
             isError = true;
         }
+        if (checkCorrectDate.isEmailExist(login)) {
+            request.setAttribute("errorLogin", "This email is used by another user!");
+            isError = true;
+        }
         if (!checkCorrectDate.isValidLogin(login)) {
             request.setAttribute("errorLogin", "Please enter a valid Gmail address!");
             isError = true;
         }
+
         if (!checkCorrectDate.isMoreThree(password)) {
             request.setAttribute("errorPassword", "Invalid login format. Password must be at least 3 characters long");
             isError = true;

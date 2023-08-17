@@ -4,4 +4,6 @@ public interface ICheckCorrectDate {
     boolean isValidLogin(String email);
 
     boolean isMoreThree(String name);
+
+    boolean isEmailExist(String email);
 }

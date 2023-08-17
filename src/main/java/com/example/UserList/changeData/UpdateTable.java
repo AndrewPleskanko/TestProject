@@ -17,21 +17,19 @@ public class UpdateTable extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int userId = Integer.parseInt(req.getParameter("userId"));
-        String firstName = req.getParameter("firstName");
-        String lastName = req.getParameter("lastName");
-        String login = req.getParameter("login");
-        String password = req.getParameter("password");
+        DataGetAndSet dataGetAndSet = new DataGetAndSet();
+        String[] data = dataGetAndSet.getAndSet(req);
 
-        req.setAttribute("firstName", firstName);
-        req.setAttribute("lastName", lastName);
-        req.setAttribute("login", login);
-        req.setAttribute("password", password);
+        String firstName = data[0];
+        String lastName = data[1];
+        String login = data[2];
+        String password = data[3];
 
-        ArrayList<User> user = new ArrayList<User>();
+        ArrayList<User> user = new ArrayList<>();
         user.add(0, new User(userId, firstName, lastName, login, password));
         req.setAttribute("userList", user);
         Validate validate = new Validate();
-        if(validate.validateData(firstName, lastName, login, password, req, resp)){
+        if (validate.validateData(firstName, lastName, login, password, req, resp)) {
             req.getRequestDispatcher("/update").forward(req, resp);
         }
         String query = "UPDATE users SET first_name = ?, last_name = ?, login = ?, password = ? WHERE id = ?";
@@ -41,11 +39,4 @@ public class UpdateTable extends HttpServlet {
         resp.sendRedirect("/UserList_war/usersList");
     }
 
-    private boolean isValidLogin(String email) {
-        return email.toLowerCase().endsWith("@gmail.com");
-    }
-
-    private boolean isMoreThree(String name) {
-        return name.length() > 2;
-    }
 }

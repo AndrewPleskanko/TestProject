@@ -15,26 +15,27 @@
 <body>
 <h1>Registration Page</h1>
 <form action="${pageContext.request.contextPath}/logIn" method="GET">
-<div class="form-group row">
-    <label for="login" class="col-sm-2 col-form-label">Login</label>
-    <div class="col-sm-10">
-        <input type="text" class="form-control" name="login" id="login" value="${login}">
+    <div class="form-group row">
+        <label for="login" class="col-sm-2 col-form-label">Login</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="login" id="login" value="${login}">
 
+        </div>
     </div>
-</div>
 
-<div class="form-group row">
-    <label for="password" class="col-sm-2 col-form-label">Password</label>
-    <div class="col-sm-10">
-        <input type="password" class="form-control" name="password" id="password" value="${password}">
+    <div class="form-group row">
+        <label for="password" class="col-sm-2 col-form-label">Password</label>
+        <div class="col-sm-10">
+            <input type="password" class="form-control" name="password" id="password" value="${password}">
+        </div>
     </div>
-</div>
 
-<div class="form-group row">
-    <div class="col-sm-12 text-center">
-        <button type="submit" class="btn btn-primary">Log In</button>
+    <div class="form-group row">
+        <div class="col-sm-12 text-center">
+            <button type="submit" class="btn btn-primary">Log In</button>
+        </div>
     </div>
-</div>
-<p class="text-center"> ${errorLoginOrPassword} </p>
+    <p class="text-center"> ${errorLoginOrPassword} </p>
+</form>
 </body>
 </html>

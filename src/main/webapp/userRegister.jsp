@@ -51,7 +51,13 @@
                 <button type="submit" class="btn btn-primary">Create user</button>
             </div>
         </div>
-
+    </form>
+    <form action="${pageContext.request.contextPath}/logIn" method="GET">
+        <div class="form-group row">
+            <div class="col-sm-12 text-center">
+                <button type="submit" class="btn btn-primary">Login</button>
+            </div>
+        </div>
     </form>
 </div>
 

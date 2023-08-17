@@ -12,4 +12,6 @@ public interface IUserDAO {
     void update(String queryOp, String firstName, String lastName, String login, String password, int userId);
 
     boolean isUserExist(String login, String password);
+
+    boolean isEmailExist(String email);
 }
