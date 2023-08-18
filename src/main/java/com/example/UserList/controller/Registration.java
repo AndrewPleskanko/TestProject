@@ -26,6 +26,7 @@ public class Registration extends HttpServlet {
         String lastName = data[1];
         String login = data[2];
         String password = data[3];
+
         Validate validate = new Validate();
         if (validate.validateData(firstName, lastName, login, password, request, response)) {
             request.getRequestDispatcher("userRegister.jsp").forward(request, response);

@@ -23,25 +23,24 @@ public class ChangeTable extends HttpServlet {
         String action = req.getParameter("action");
         if ("update".equals(action)) {
             int userId = Integer.parseInt(req.getParameter("userId"));
-            String query = "SELECT * FROM users WHERE id =" + userId;
             UserDAO userDao = new UserDAO();
-            List<User> userList = userDao.read(query);
-            req.setAttribute("userList", userList);
+            User user = userDao.getUser(userId);
+            req.setAttribute("user", user);
 
             req.getRequestDispatcher("userUpdate.jsp").forward(req, resp);
         } else if ("delete".equals(action)) {
-            int userId = Integer.parseInt(req.getParameter("userId"));
-            String query = "DELETE FROM users WHERE id = " + userId;
+            String userId = req.getParameter("userId");
+
             UserDAO userDao = new UserDAO();
-            userDao.delete(query);
+            userDao.delete(userId);
 
             resp.sendRedirect("/UserList_war/usersList");
         } else if ("search".equals(action)) {
             String searchText = req.getParameter("searchText");
-            String query = "SELECT * FROM users WHERE first_name LIKE '%" + searchText + "%' OR last_name LIKE '%" + searchText + "%' OR login LIKE '%" + searchText + "%'";
+
             UserDAO userDao = new UserDAO();
-            List<User> userList = userDao.read(query);
-            if (userList.isEmpty()){
+            List<User> userList = userDao.searchUser(searchText);
+            if (userList.isEmpty()) {
                 req.setAttribute("hint", "User not found. Try write something else");
             }
             req.setAttribute("userList", userList);

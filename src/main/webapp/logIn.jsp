@@ -37,5 +37,12 @@
     </div>
     <p class="text-center"> ${errorLoginOrPassword} </p>
 </form>
+<form action="${pageContext.request.contextPath}/userRegister.jsp" method="GET">
+    <div class="form-group row">
+        <div class="col-sm-12 text-center">
+            <button type="submit" class="btn btn-primary">Registration</button>
+        </div>
+    </div>
+</form>
 </body>
 </html>

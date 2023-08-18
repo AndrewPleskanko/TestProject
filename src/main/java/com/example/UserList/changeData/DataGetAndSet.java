@@ -13,8 +13,7 @@ public class DataGetAndSet {
         req.setAttribute("lastName", lastName);
         req.setAttribute("login", login);
         req.setAttribute("password", password);
-        String[] data = new String[]{firstName, lastName, login, password};
-        return data;
+        return new String[]{firstName, lastName, login, password};
 
     }
 }

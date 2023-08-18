@@ -14,11 +14,10 @@
     </style>
 </head>
 <body>
-<c:forEach items="${userList}" var="user">
     <div class="container">
         <h2 class="mt-3 text-center">Enter new Data</h2>
         <div class="container d-flex justify-content-center align-items-center vh-80">
-            <form class="mt-3" action="${pageContext.request.contextPath}/update" method="post">
+            <form class="mt-3" action="${pageContext.request.contextPath}/update" method="GET">
                 <div class="row">
                     <div class="col-md-12">
                         <label class="col-form-label">First Name</label>
@@ -48,9 +47,5 @@
             </form>
         </div>
     </div>
-
-</c:forEach>
-
-
 </body>
 </html>

@@ -9,7 +9,7 @@ import java.util.List;
 
 public class UserDAO implements IUserDAO {
     @Override
-    public List<User> read(String query) {
+    public List<User> getAllUser(String query) {
         List<User> users = new ArrayList<>();
         try (Connection connection = DBUtils.getConnect();
              Statement statement = connection.createStatement();
@@ -31,9 +31,30 @@ public class UserDAO implements IUserDAO {
     }
 
     @Override
+    public User getUser(int id) {
+        User user = null;
+        String query = QueryString.getUser;
+        try (Connection connection = DBUtils.getConnect();
+             Statement statement = connection.createStatement();
+             ResultSet resultSet = statement.executeQuery(query + id)) {
+            while (resultSet.next()) {
+                String first_name = resultSet.getString("first_name");
+                String last_name = resultSet.getString("last_name");
+                String login = resultSet.getString("login");
+                String password = resultSet.getString("password");
+                user = new User(id, first_name, last_name, login, password);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return user;
+    }
+
+    @Override
     public void create(String name, String surname, String login, String password) {
         try (Connection connection = DBUtils.getConnect()) {
-            String query = QueryString.getAllUser;
+            String query = QueryString.insertUser;
 
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1, name);
@@ -47,9 +68,10 @@ public class UserDAO implements IUserDAO {
     }
 
     @Override
-    public void delete(String queryOp) {
+    public void delete(String id) {
+        String query = QueryString.delete;
         try (Connection connection = DBUtils.getConnect();
-             PreparedStatement statement = connection.prepareStatement(queryOp)) {
+             PreparedStatement statement = connection.prepareStatement(query + id)) {
 
             statement.executeUpdate();
         } catch (SQLException e) {
@@ -57,11 +79,11 @@ public class UserDAO implements IUserDAO {
         }
     }
 
-
     @Override
-    public void update(String queryOp, String firstName, String lastName, String login, String password, int userId) {
+    public void update(int userId, String firstName, String lastName, String login, String password) {
+        String query = QueryString.updateUser;
         try (Connection connection = DBUtils.getConnect();
-             PreparedStatement statement = connection.prepareStatement(queryOp)) {
+             PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setString(1, firstName);
             statement.setString(2, lastName);
             statement.setString(3, login);
@@ -105,7 +127,7 @@ public class UserDAO implements IUserDAO {
         try (Connection connection = DBUtils.getConnect();
              PreparedStatement statement = connection.prepareStatement(query)) {
 
-            statement.setString(1, email); // Встановити значення параметру
+            statement.setString(1, email);
 
             ResultSet resultSet = statement.executeQuery();
 
@@ -124,5 +146,34 @@ public class UserDAO implements IUserDAO {
         return userExists;
     }
 
+    @Override
+    public List<User> searchUser(String data) {
+        List<User> users = new ArrayList<>();
+        String query = QueryString.searchUser;
+        try (Connection connection = DBUtils.getConnect();
+             PreparedStatement statement = connection.prepareStatement(query)) {
+
+            // Встановити параметри запиту з використанням знаків %
+            statement.setString(1, "%" + data + "%");
+            statement.setString(2, "%" + data + "%");
+            statement.setString(3, "%" + data + "%");
+
+            try (ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+                    // Обробити результат запиту
+                    int id = resultSet.getInt("id");
+                    String first_name = resultSet.getString("first_name");
+                    String last_name = resultSet.getString("last_name");
+                    String login = resultSet.getString("login");
+                    String password = resultSet.getString("password");
+
+                    users.add(new User(id, first_name, last_name, login, password));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return users;
+    }
 }
 

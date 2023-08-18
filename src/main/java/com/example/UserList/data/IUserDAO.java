@@ -3,15 +3,19 @@ package com.example.UserList.data;
 import java.util.List;
 
 public interface IUserDAO {
-    List<User> read(String query);
+    List<User> getAllUser(String query);
+
+    User getUser(int id);
 
     void create(String name, String surname, String login, String password);
 
-    void delete(String queryOp);
+    void delete(String id);
 
-    void update(String queryOp, String firstName, String lastName, String login, String password, int userId);
+    void update(int userId, String firstName, String lastName, String login, String password);
 
     boolean isUserExist(String login, String password);
 
     boolean isEmailExist(String email);
+
+    List<User> searchUser(String data);
 }

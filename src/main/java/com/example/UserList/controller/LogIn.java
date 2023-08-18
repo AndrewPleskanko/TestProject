@@ -28,8 +28,7 @@ public class LogIn extends HttpServlet {
         }
         HttpSession session = req.getSession();
         session.setAttribute("login", login);
-        List<User> userList = userDao.read("SELECT * FROM users");
-        req.setAttribute("userList", userList);
+
         req.getRequestDispatcher("/usersList").forward(req, resp);
     }
 }
