@@ -1,21 +1,23 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%@ page import="com.example.UserList.dataDefinition.DataName" %>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
     <title>User List</title>
-    <!-- Підключення файлів стилів Bootstrap -->
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
 <div class="container">
     <h2 class="text-center align-middle">User List</h2>
     <div class="d-flex justify-content-between mb-2">
+
         <form action="${pageContext.request.contextPath}/change" method="GET">
             <input type="hidden" name="userId" value="${user.id}"/>
             <button type="submit" class="btn btn-primary">Create</button>
         </form>
+
         <form action="${pageContext.request.contextPath}/change" method="post">
             <div class="input-group mb-2">
                 <input type="text" name="searchText" placeholder="Enter Data" aria-label="Recipient's username"
@@ -26,6 +28,7 @@
                 </div>
             </div>
         </form>
+
     </div>
 
     <table class="table table-bordered table-striped">
@@ -36,19 +39,18 @@
                     <p class="m-0">Name</p>
 
                     <form action="${pageContext.request.contextPath}/usersList" method="post">
-                        <input type="hidden" name="sortColumn" value="first_name"/>
-                        <input type="hidden" name="sortOrder" value="ASC"/>
+                        <input type="hidden" name="${DataName.sortColumn}" value="first_name"/>
+                        <input type="hidden" name="${DataName.sortOrder}" value="ASC"/>
                         <button type="submit"
-                                class="btn btn-link" ${sortOrderAscending ? 'style="display: none;"' : ''}>&#9650;
+                                class="btn btn-link" ${isSortOrderAscending ? 'style="display: none;"' : ''}>&#9650;
                         </button>
                     </form>
 
-
                     <form action="${pageContext.request.contextPath}/usersList" method="post">
-                        <input type="hidden" name="sortColumn" value="first_name"/>
-                        <input type="hidden" name="sortOrder" value="DESC"/>
+                        <input type="hidden" name="${DataName.sortColumn}" value="first_name"/>
+                        <input type="hidden" name="${DataName.sortOrder}" value="DESC"/>
                         <button type="submit"
-                                class="btn btn-link" ${sortOrderAscending ? '' : 'style="display: none;"'}>&#9660;
+                                class="btn btn-link" ${isSortOrderAscending ? '' : 'style="display: none;"'}>&#9660;
                         </button>
                     </form>
 
@@ -59,17 +61,18 @@
                 <div class="d-flex align-items-center justify-content-between">
                     <p class="m-0">Surname</p>
                     <form action="${pageContext.request.contextPath}/usersList" method="post">
-                        <input type="hidden" name="sortColumn" value="last_name"/>
-                        <input type="hidden" name="sortOrder" value="ASC"/>
+                        <input type="hidden" name="${DataName.sortColumn}" value="last_name"/>
+                        <input type="hidden" name="${DataName.sortOrder}" value="ASC"/>
                         <button type="submit"
-                                class="btn btn-link" ${sortOrderAscending ? 'style="display: none;"' : ''}>&#9650;
+                                class="btn btn-link" ${isSortOrderAscending ? 'style="display: none;"' : ''}>&#9650;
                         </button>
                     </form>
+
                     <form action="${pageContext.request.contextPath}/usersList" method="post">
-                        <input type="hidden" name="sortColumn" value="last_name"/>
-                        <input type="hidden" name="sortOrder" value="DESC"/>
+                        <input type="hidden" name="${DataName.sortColumn}" value="last_name"/>
+                        <input type="hidden" name="${DataName.sortOrder}" value="DESC"/>
                         <button type="submit"
-                                class="btn btn-link" ${sortOrderAscending ? '' : 'style="display: none;"'}>&#9660;
+                                class="btn btn-link" ${isSortOrderAscending ? '' : 'style="display: none;"'}>&#9660;
                         </button>
                     </form>
                 </div>
@@ -79,17 +82,17 @@
                 <div class="d-flex align-items-center justify-content-between">
                     <p class="m-0">Login</p>
                     <form action="${pageContext.request.contextPath}/usersList" method="post">
-                        <input type="hidden" name="sortColumn" value="login"/>
-                        <input type="hidden" name="sortOrder" value="ASC"/>
+                        <input type="hidden" name="${DataName.sortColumn}" value="login"/>
+                        <input type="hidden" name="${DataName.sortOrder}" value="ASC"/>
                         <button type="submit"
-                                class="btn btn-link" ${sortOrderAscending ? 'style="display: none;"' : ''}>&#9650;
+                                class="btn btn-link" ${isSortOrderAscending ? 'style="display: none;"' : ''}>&#9650;
                         </button>
                     </form>
                     <form action="${pageContext.request.contextPath}/usersList" method="post">
-                        <input type="hidden" name="sortColumn" value="login"/>
-                        <input type="hidden" name="sortOrder" value="DESC"/>
+                        <input type="hidden" name="${DataName.sortColumn}" value="login"/>
+                        <input type="hidden" name="${DataName.sortOrder}" value="DESC"/>
                         <button type="submit"
-                                class="btn btn-link" ${sortOrderAscending ? '' : 'style="display: none;"'}>&#9660;
+                                class="btn btn-link" ${isSortOrderAscending ? '' : 'style="display: none;"'}>&#9660;
                         </button>
                     </form>
                 </div>
@@ -123,9 +126,9 @@
     <h2 class="text-center"> ${hint} </h2>
 </div>
 <div class="container d-flex justify-content-center">
-    <nav aria-label="Page navigation example">
+    <nav aria-label="Page navigation">
         <ul class="pagination">
-            <%-- Використовуємо forEach для генерації кнопок --%>
+
             <c:forEach var="pageNum" begin="1" end="${pageCount}">
                 <li class="page-item ${pageNum == currentPage ? 'active' : ''}">
                     <a class="page-link"

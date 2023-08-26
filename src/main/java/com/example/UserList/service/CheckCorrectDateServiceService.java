@@ -1,8 +1,8 @@
 package com.example.UserList.service;
 
-import com.example.UserList.data.UserDAO;
+import com.example.UserList.data.dao.UserDAO;
 
-public class CheckCorrectDate implements ICheckCorrectDate {
+public class CheckCorrectDateServiceService implements ICheckCorrectDateService {
 
     @Override
     public boolean isValidLogin(String email) {

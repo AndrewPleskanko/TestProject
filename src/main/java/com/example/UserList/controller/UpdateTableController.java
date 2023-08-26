@@ -1,8 +1,11 @@
-package com.example.UserList.changeData;
+package com.example.UserList.controller;
 
-import com.example.UserList.data.UserDAO;
-import com.example.UserList.data.User;
-import com.example.UserList.service.Validate;
+
+import com.example.UserList.dataDefinition.DataName;
+import com.example.UserList.service.DataGetAndSet;
+import com.example.UserList.data.dao.UserDAO;
+import com.example.UserList.data.entity.User;
+import com.example.UserList.service.ValidateService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -13,9 +16,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 @WebServlet("/update")
-public class UpdateTable extends HttpServlet {
+public class UpdateTableController extends HttpServlet {
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int userId = Integer.parseInt(req.getParameter("userId"));
         DataGetAndSet dataGetAndSet = new DataGetAndSet();
         String[] data = dataGetAndSet.getAndSet(req);
@@ -27,16 +30,15 @@ public class UpdateTable extends HttpServlet {
 
         ArrayList<User> user = new ArrayList<>();
         user.add(0, new User(userId, firstName, lastName, login, password));
-        req.setAttribute("userList", user);
-        Validate validate = new Validate();
-        if (validate.validateData(firstName, lastName, login, password, req, resp)) {
+        req.setAttribute(DataName.userList, user);
+        ValidateService validateService = new ValidateService();
+        if (validateService.validateData(firstName, lastName, login, password, req, resp)) {
             req.getRequestDispatcher("/update").forward(req, resp);
         }
-        String query = "UPDATE users SET first_name = ?, last_name = ?, login = ?, password = ? WHERE id = ?";
         UserDAO userDao = new UserDAO();
-        userDao.update(query, firstName, lastName, login, password, userId);
+        userDao.update(userId, firstName, lastName, login, password);
+        req.getRequestDispatcher("/usersList").forward(req, resp);
 
-        resp.sendRedirect("/UserList_war/usersList");
     }
 
 }

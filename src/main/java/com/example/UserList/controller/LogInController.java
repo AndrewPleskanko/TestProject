@@ -1,7 +1,7 @@
 package com.example.UserList.controller;
 
-import com.example.UserList.data.User;
-import com.example.UserList.data.UserDAO;
+import com.example.UserList.data.dao.UserDAO;
+import com.example.UserList.dataDefinition.ErrorData;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -10,10 +10,9 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
-import java.util.List;
 
 @WebServlet("/logIn")
-public class LogIn extends HttpServlet {
+public class LogInController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -23,7 +22,7 @@ public class LogIn extends HttpServlet {
         userDao.isUserExist(login, password);
 
         if (!userDao.isUserExist(login, password)) {
-            req.setAttribute("errorLoginOrPassword", "Incorrect login or password");
+            req.setAttribute("errorLoginOrPassword", ErrorData.ERROR_LOGIN_OR_PASS);
             req.getRequestDispatcher("logIn.jsp").forward(req, resp);
         }
         HttpSession session = req.getSession();

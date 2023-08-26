@@ -1,5 +1,8 @@
 package com.example.UserList.dbUtils;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.Connection;
@@ -8,7 +11,9 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 public class DBUtils {
+    private static final Logger logger = LogManager.getLogger(DBUtils.class.getName());
     public static Connection getConnect() {
+
         String dbUrl = null;
         String dbUsername = "";
         String dbPassword = "";
@@ -23,14 +28,14 @@ public class DBUtils {
             dbPassword = properties.getProperty("db_password");
 
         } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
+            logger.error("Error loading database properties", e);
         }
 
         Connection connection = null;
         try {
             connection = DriverManager.getConnection(dbUrl, dbUsername, dbPassword);
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("Error connecting to the database", e);
         }
 
         return connection;

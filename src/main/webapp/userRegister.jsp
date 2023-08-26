@@ -55,7 +55,7 @@
     <form action="${pageContext.request.contextPath}/logIn" method="GET">
         <div class="form-group row">
             <div class="col-sm-12 text-center">
-                <button type="submit" class="btn btn-primary">Login</button>
+                <button type="submit" class="btn btn-primary">Log in</button>
             </div>
         </div>
     </form>

@@ -1,9 +1,13 @@
-package com.example.UserList.data;
+package com.example.UserList.data.dao;
+
+import com.example.UserList.data.entity.User;
 
 import java.util.List;
 
 public interface IUserDAO {
-    List<User> getAllUser(String query);
+    List<User> getAllUser();
+
+    List<User> sortUser(String sortColumn, String sortOrder);
 
     User getUser(int id);
 

@@ -1,4 +1,4 @@
-package com.example.UserList.changeData;
+package com.example.UserList.service;
 
 import jakarta.servlet.http.HttpServletRequest;
 
@@ -16,4 +16,5 @@ public class DataGetAndSet {
         return new String[]{firstName, lastName, login, password};
 
     }
+
 }
