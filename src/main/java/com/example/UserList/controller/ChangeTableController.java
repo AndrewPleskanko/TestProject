@@ -17,8 +17,9 @@ import java.util.List;
 @WebServlet("/change")
 public class ChangeTableController extends HttpServlet {
     UserDAO userDao;
+
     @Override
-    public void init(ServletConfig config) throws ServletException {
+    public void init(ServletConfig config) {
         userDao = new UserDAO();
     }
 
@@ -29,28 +30,28 @@ public class ChangeTableController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String action = req.getParameter(FieldName.action);
-        if (FieldName.update.equals(action)) {
-            int userId = Integer.parseInt(req.getParameter(FieldName.userId));
+        String action = req.getParameter(FieldName.ACTION);
+        if (FieldName.UPDATE.equals(action)) {
+            int userId = Integer.parseInt(req.getParameter(FieldName.USER_ID));
 
             User user = userDao.getUser(userId);
-            req.setAttribute(FieldName.user, user);
+            req.setAttribute(FieldName.USER, user);
 
             req.getRequestDispatcher("userUpdate.jsp").forward(req, resp);
-        } else if (FieldName.delete.equals(action)) {
-            String userId = req.getParameter(FieldName.userId);
+        } else if (FieldName.DELETE.equals(action)) {
+            String userId = req.getParameter(FieldName.USER_ID);
 
             userDao.delete(userId);
 
             resp.sendRedirect("/UserList_war/usersList");
-        } else if (FieldName.search.equals(action)) {
-            String searchText = req.getParameter(FieldName.searchText);
+        } else if (FieldName.SEARCH.equals(action)) {
+            String searchText = req.getParameter(FieldName.SEARCH_TEXT);
 
-            List<User> userList = userDao.searchUser(searchText);
-            if (userList.isEmpty()) {
-                req.setAttribute(FieldName.hint, ErrorData.ERROR_USER_NOT_FOUND);
+            List<User> USER_LIST = userDao.searchUser(searchText);
+            if (USER_LIST.isEmpty()) {
+                req.setAttribute(FieldName.HINT, ErrorData.ERROR_USER_NOT_FOUND);
             }
-            req.setAttribute(FieldName.userList, userList);
+            req.setAttribute(FieldName.USER_LIST, USER_LIST);
 
             req.getRequestDispatcher("usersList.jsp").forward(req, resp);
         }

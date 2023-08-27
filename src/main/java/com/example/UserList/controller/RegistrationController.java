@@ -28,7 +28,7 @@ public class RegistrationController extends HttpServlet {
         String password = data[3];
 
         ValidateService validateService = new ValidateService();
-        if (validateService.validateData(firstName, lastName, login, password, request, response)) {
+        if (validateService.validateData(firstName, lastName, login, password, request)) {
             request.getRequestDispatcher("userRegister.jsp").forward(request, response);
             return;
         }

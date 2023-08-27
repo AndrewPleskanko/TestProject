@@ -1,5 +1,6 @@
 package com.example.UserList.dbUtils;
 
+import com.example.UserList.dataDefinition.ErrorData;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -12,6 +13,7 @@ import java.util.Properties;
 
 public class DBUtils {
     private static final Logger logger = LogManager.getLogger(DBUtils.class.getName());
+
     public static Connection getConnect() {
 
         String dbUrl = null;
@@ -28,14 +30,14 @@ public class DBUtils {
             dbPassword = properties.getProperty("db_password");
 
         } catch (IOException | ClassNotFoundException e) {
-            logger.error("Error loading database properties", e);
+            logger.error(ErrorData.ERROR_LOADING_DATABASE_PROPERTIES, e);
         }
 
         Connection connection = null;
         try {
             connection = DriverManager.getConnection(dbUrl, dbUsername, dbPassword);
         } catch (SQLException e) {
-            logger.error("Error connecting to the database", e);
+            logger.error(ErrorData.ERROR_CONNECTING_TO_DATABASE, e);
         }
 
         return connection;

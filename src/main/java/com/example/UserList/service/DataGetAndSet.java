@@ -1,18 +1,19 @@
 package com.example.UserList.service;
 
+import com.example.UserList.dataDefinition.FieldName;
 import jakarta.servlet.http.HttpServletRequest;
 
 public class DataGetAndSet {
     public String[] getAndSet(HttpServletRequest req) {
-        String firstName = req.getParameter("firstName");
-        String lastName = req.getParameter("lastName");
-        String login = req.getParameter("login");
-        String password = req.getParameter("password");
+        String firstName = req.getParameter(FieldName.FIRST_NAME);
+        String lastName = req.getParameter(FieldName.LAST_NAME);
+        String login = req.getParameter(FieldName.LOGIN);
+        String password = req.getParameter(FieldName.PASSWORD);
 
-        req.setAttribute("firstName", firstName);
-        req.setAttribute("lastName", lastName);
-        req.setAttribute("login", login);
-        req.setAttribute("password", password);
+        req.setAttribute(FieldName.FIRST_NAME, firstName);
+        req.setAttribute(FieldName.LAST_NAME, lastName);
+        req.setAttribute(FieldName.LOGIN, login);
+        req.setAttribute(FieldName.PASSWORD, password);
         return new String[]{firstName, lastName, login, password};
 
     }

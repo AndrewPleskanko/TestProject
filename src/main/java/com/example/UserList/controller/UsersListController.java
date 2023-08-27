@@ -1,6 +1,5 @@
 package com.example.UserList.controller;
 
-import com.example.UserList.data.dao.IUserDAO;
 import com.example.UserList.data.dao.UserDAO;
 import com.example.UserList.data.entity.User;
 import com.example.UserList.dataDefinition.FieldName;
@@ -18,7 +17,7 @@ import java.util.List;
 
 @WebServlet("/usersList")
 public class UsersListController extends HttpServlet {
-    IUserDAO userDao;
+    UserDAO userDao;
     NavigationService navigationService;
 
     @Override
@@ -38,9 +37,9 @@ public class UsersListController extends HttpServlet {
     }
 
     private void processRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String sortColumn = req.getParameter(FieldName.sortColumn);
-        String sortOrder = req.getParameter(FieldName.sortOrder);
-        String pageParam = req.getParameter(FieldName.page);
+        String sortColumn = req.getParameter(FieldName.SORT_COLUMN);
+        String sortOrder = req.getParameter(FieldName.SORT_ORDER);
+        String pageParam = req.getParameter(FieldName.PAGE);
         Integer page = null;
         if (pageParam != null) {
             page = Integer.valueOf(pageParam);
@@ -49,7 +48,7 @@ public class UsersListController extends HttpServlet {
         boolean isSortOrderAscending = sortColumn != null && sortOrder != null && sortOrder.equals("ASC");
 
         HttpSession session = req.getSession();
-        session.setAttribute(FieldName.isSortOrderAscending, isSortOrderAscending);
+        session.setAttribute(FieldName.IS_SORT_ORDER_ASCENDING, isSortOrderAscending);
 
         List<User> userList;
 
@@ -61,9 +60,9 @@ public class UsersListController extends HttpServlet {
 
         ResponseDto responseDto = navigationService.buttonLogic(userList, page);
 
-        req.setAttribute(FieldName.currentPage, responseDto.getCurrentPage());
-        req.setAttribute(FieldName.pageCount, responseDto.getPageCount());
-        req.setAttribute(FieldName.userList, responseDto.getUserList());
+        req.setAttribute(FieldName.CURRENT_PAGE, responseDto.getCurrentPage());
+        req.setAttribute(FieldName.PAGE_COUNT, responseDto.getPage_count());
+        req.setAttribute(FieldName.USER_LIST, responseDto.getUserList());
 
         req.getRequestDispatcher("usersList.jsp").forward(req, resp);
     }

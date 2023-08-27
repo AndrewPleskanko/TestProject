@@ -11,14 +11,14 @@ public class NavigationService {
 
     public ResponseDto buttonLogic(List<User> userList, Integer page) {
         int totalUsers = userList.size();
-        int pageCount = (totalUsers + PAGE_SIZE - 1) / PAGE_SIZE;
+        int PAGE_COUNT = (totalUsers + PAGE_SIZE - 1) / PAGE_SIZE;
 
         if (page != null) {
             int startIdx = (page - 1) * PAGE_SIZE;
             int endIdx = Math.min(startIdx + PAGE_SIZE, totalUsers);
             List<User> usersToDisplay = userList.subList(startIdx, endIdx);
 
-            return new ResponseDto(page, pageCount, usersToDisplay, 0);
+            return new ResponseDto(page, PAGE_COUNT, usersToDisplay, 0);
         } else {
             return createFirstPageInfo(userList);
         }

@@ -12,7 +12,7 @@ import java.util.List;
 @AllArgsConstructor
 public class ResponseDto {
     private int currentPage;
-    private int pageCount;
+    private int page_count;
     private List<User> userList;
     private int pageNum;
 

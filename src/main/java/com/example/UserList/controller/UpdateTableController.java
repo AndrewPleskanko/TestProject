@@ -19,7 +19,7 @@ import java.util.ArrayList;
 public class UpdateTableController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int userId = Integer.parseInt(req.getParameter(FieldName.userId));
+        int userId = Integer.parseInt(req.getParameter(FieldName.USER_ID));
         DataGetAndSet dataGetAndSet = new DataGetAndSet();
         String[] data = dataGetAndSet.getAndSet(req);
 
@@ -30,9 +30,9 @@ public class UpdateTableController extends HttpServlet {
 
         ArrayList<User> user = new ArrayList<>();
         user.add(0, new User(userId, firstName, lastName, login, password));
-        req.setAttribute(FieldName.userList, user);
+        req.setAttribute(FieldName.USER_LIST, user);
         ValidateService validateService = new ValidateService();
-        if (validateService.validateData(firstName, lastName, login, password, req, resp)) {
+        if (validateService.validateData(firstName, lastName, login, password, req)) {
             req.getRequestDispatcher("/update").forward(req, resp);
         }
         UserDAO userDao = new UserDAO();
