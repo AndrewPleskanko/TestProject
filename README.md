@@ -45,7 +45,7 @@ CREATE TABLE users
 - Lombok
 - log4j (for logging data)
 
-  # application view
+  # Application view
 <img src="Register.png">
 <img src="Login.png">
 <img src="Main.png">
