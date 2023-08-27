@@ -8,7 +8,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-6">
-            <h1 class="text-center">Registration Page</h1>
+            <h1 class="text-center">Login Page</h1>
             <form action="${pageContext.request.contextPath}/logIn" method="GET">
                 <div class="form-group">
                     <label for="login">Login</label>
