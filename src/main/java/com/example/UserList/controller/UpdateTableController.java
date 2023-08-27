@@ -1,7 +1,7 @@
 package com.example.UserList.controller;
 
 
-import com.example.UserList.dataDefinition.DataName;
+import com.example.UserList.dataDefinition.FieldName;
 import com.example.UserList.service.DataGetAndSet;
 import com.example.UserList.data.dao.UserDAO;
 import com.example.UserList.data.entity.User;
@@ -19,7 +19,7 @@ import java.util.ArrayList;
 public class UpdateTableController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int userId = Integer.parseInt(req.getParameter("userId"));
+        int userId = Integer.parseInt(req.getParameter(FieldName.userId));
         DataGetAndSet dataGetAndSet = new DataGetAndSet();
         String[] data = dataGetAndSet.getAndSet(req);
 
@@ -30,7 +30,7 @@ public class UpdateTableController extends HttpServlet {
 
         ArrayList<User> user = new ArrayList<>();
         user.add(0, new User(userId, firstName, lastName, login, password));
-        req.setAttribute(DataName.userList, user);
+        req.setAttribute(FieldName.userList, user);
         ValidateService validateService = new ValidateService();
         if (validateService.validateData(firstName, lastName, login, password, req, resp)) {
             req.getRequestDispatcher("/update").forward(req, resp);

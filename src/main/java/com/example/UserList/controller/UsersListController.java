@@ -3,7 +3,7 @@ package com.example.UserList.controller;
 import com.example.UserList.data.dao.IUserDAO;
 import com.example.UserList.data.dao.UserDAO;
 import com.example.UserList.data.entity.User;
-import com.example.UserList.dataDefinition.DataName;
+import com.example.UserList.dataDefinition.FieldName;
 import com.example.UserList.dto.ResponseDto;
 import com.example.UserList.service.NavigationService;
 import jakarta.servlet.ServletException;
@@ -22,7 +22,7 @@ public class UsersListController extends HttpServlet {
     NavigationService navigationService;
 
     @Override
-    public void init() throws ServletException {
+    public void init() {
         userDao = new UserDAO();
         navigationService = new NavigationService();
     }
@@ -38,9 +38,9 @@ public class UsersListController extends HttpServlet {
     }
 
     private void processRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String sortColumn = req.getParameter(DataName.sortColumn);
-        String sortOrder = req.getParameter(DataName.sortOrder);
-        String pageParam = req.getParameter(DataName.page);
+        String sortColumn = req.getParameter(FieldName.sortColumn);
+        String sortOrder = req.getParameter(FieldName.sortOrder);
+        String pageParam = req.getParameter(FieldName.page);
         Integer page = null;
         if (pageParam != null) {
             page = Integer.valueOf(pageParam);
@@ -49,7 +49,7 @@ public class UsersListController extends HttpServlet {
         boolean isSortOrderAscending = sortColumn != null && sortOrder != null && sortOrder.equals("ASC");
 
         HttpSession session = req.getSession();
-        session.setAttribute(DataName.isSortOrderAscending, isSortOrderAscending);
+        session.setAttribute(FieldName.isSortOrderAscending, isSortOrderAscending);
 
         List<User> userList;
 
@@ -61,9 +61,9 @@ public class UsersListController extends HttpServlet {
 
         ResponseDto responseDto = navigationService.buttonLogic(userList, page);
 
-        req.setAttribute(DataName.currentPage, responseDto.getCurrentPage());
-        req.setAttribute(DataName.pageCount, responseDto.getPageCount());
-        req.setAttribute(DataName.userList, responseDto.getUserList());
+        req.setAttribute(FieldName.currentPage, responseDto.getCurrentPage());
+        req.setAttribute(FieldName.pageCount, responseDto.getPageCount());
+        req.setAttribute(FieldName.userList, responseDto.getUserList());
 
         req.getRequestDispatcher("usersList.jsp").forward(req, resp);
     }

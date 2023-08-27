@@ -1,5 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page import="com.example.UserList.dataDefinition.DataName" %>
+<%@ page import="com.example.UserList.dataDefinition.FieldName" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,16 +39,16 @@
                     <p class="m-0">Name</p>
 
                     <form action="${pageContext.request.contextPath}/usersList" method="post">
-                        <input type="hidden" name="${DataName.sortColumn}" value="first_name"/>
-                        <input type="hidden" name="${DataName.sortOrder}" value="ASC"/>
+                        <input type="hidden" name="${FieldName.sortColumn}" value="first_name"/>
+                        <input type="hidden" name="${FieldName.sortOrder}" value="ASC"/>
                         <button type="submit"
                                 class="btn btn-link" ${isSortOrderAscending ? 'style="display: none;"' : ''}>&#9650;
                         </button>
                     </form>
 
                     <form action="${pageContext.request.contextPath}/usersList" method="post">
-                        <input type="hidden" name="${DataName.sortColumn}" value="first_name"/>
-                        <input type="hidden" name="${DataName.sortOrder}" value="DESC"/>
+                        <input type="hidden" name="${FieldName.sortColumn}" value="first_name"/>
+                        <input type="hidden" name="${FieldName.sortOrder}" value="DESC"/>
                         <button type="submit"
                                 class="btn btn-link" ${isSortOrderAscending ? '' : 'style="display: none;"'}>&#9660;
                         </button>
@@ -61,16 +61,16 @@
                 <div class="d-flex align-items-center justify-content-between">
                     <p class="m-0">Surname</p>
                     <form action="${pageContext.request.contextPath}/usersList" method="post">
-                        <input type="hidden" name="${DataName.sortColumn}" value="last_name"/>
-                        <input type="hidden" name="${DataName.sortOrder}" value="ASC"/>
+                        <input type="hidden" name="${FieldName.sortColumn}" value="last_name"/>
+                        <input type="hidden" name="${FieldName.sortOrder}" value="ASC"/>
                         <button type="submit"
                                 class="btn btn-link" ${isSortOrderAscending ? 'style="display: none;"' : ''}>&#9650;
                         </button>
                     </form>
 
                     <form action="${pageContext.request.contextPath}/usersList" method="post">
-                        <input type="hidden" name="${DataName.sortColumn}" value="last_name"/>
-                        <input type="hidden" name="${DataName.sortOrder}" value="DESC"/>
+                        <input type="hidden" name="${FieldName.sortColumn}" value="last_name"/>
+                        <input type="hidden" name="${FieldName.sortOrder}" value="DESC"/>
                         <button type="submit"
                                 class="btn btn-link" ${isSortOrderAscending ? '' : 'style="display: none;"'}>&#9660;
                         </button>
@@ -82,15 +82,15 @@
                 <div class="d-flex align-items-center justify-content-between">
                     <p class="m-0">Login</p>
                     <form action="${pageContext.request.contextPath}/usersList" method="post">
-                        <input type="hidden" name="${DataName.sortColumn}" value="login"/>
-                        <input type="hidden" name="${DataName.sortOrder}" value="ASC"/>
+                        <input type="hidden" name="${FieldName.sortColumn}" value="login"/>
+                        <input type="hidden" name="${FieldName.sortOrder}" value="ASC"/>
                         <button type="submit"
                                 class="btn btn-link" ${isSortOrderAscending ? 'style="display: none;"' : ''}>&#9650;
                         </button>
                     </form>
                     <form action="${pageContext.request.contextPath}/usersList" method="post">
-                        <input type="hidden" name="${DataName.sortColumn}" value="login"/>
-                        <input type="hidden" name="${DataName.sortOrder}" value="DESC"/>
+                        <input type="hidden" name="${FieldName.sortColumn}" value="login"/>
+                        <input type="hidden" name="${FieldName.sortOrder}" value="DESC"/>
                         <button type="submit"
                                 class="btn btn-link" ${isSortOrderAscending ? '' : 'style="display: none;"'}>&#9660;
                         </button>

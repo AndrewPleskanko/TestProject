@@ -1,17 +1,2 @@
-20:53:59.861 [http-nio-8080-exec-18] INFO  com.example.UserList.data.dao.UserDAO - Getting all users
-20:54:02.759 [http-nio-8080-exec-22] INFO  com.example.UserList.data.dao.UserDAO - Sorting users by column: first_name and order: ASC
-20:54:04.142 [http-nio-8080-exec-20] INFO  com.example.UserList.data.dao.UserDAO - Sorting users by column: first_name and order: DESC
-20:54:09.212 [http-nio-8080-exec-16] INFO  com.example.UserList.data.dao.UserDAO - Sorting users by column: first_name and order: ASC
-20:54:12.287 [http-nio-8080-exec-23] INFO  com.example.UserList.data.dao.UserDAO - Sorting users by column: first_name and order: DESC
-20:54:17.423 [http-nio-8080-exec-19] INFO  com.example.UserList.data.dao.UserDAO - Getting user with ID: 156
-23:30:06.395 [http-nio-8080-exec-44] INFO  com.example.UserList.data.dao.UserDAO - Getting all users
-23:30:10.874 [http-nio-8080-exec-45] INFO  com.example.UserList.data.dao.UserDAO - Sorting users by column: first_name and order: ASC
-23:30:14.191 [http-nio-8080-exec-46] INFO  com.example.UserList.data.dao.UserDAO - Sorting users by column: first_name and order: DESC
-23:30:17.337 [http-nio-8080-exec-47] INFO  com.example.UserList.data.dao.UserDAO - Deleting user with ID: 158
-23:30:17.351 [http-nio-8080-exec-48] INFO  com.example.UserList.data.dao.UserDAO - Getting all users
-23:30:18.749 [http-nio-8080-exec-49] INFO  com.example.UserList.data.dao.UserDAO - Sorting users by column: first_name and order: ASC
-23:30:19.548 [http-nio-8080-exec-50] INFO  com.example.UserList.data.dao.UserDAO - Sorting users by column: first_name and order: DESC
-23:32:40.309 [http-nio-8080-exec-52] INFO  com.example.UserList.data.dao.UserDAO - Sorting users by column: first_name and order: ASC
-23:32:44.639 [http-nio-8080-exec-44] INFO  com.example.UserList.data.dao.UserDAO - Deleting user with ID: 78
-23:32:44.653 [http-nio-8080-exec-45] INFO  com.example.UserList.data.dao.UserDAO - Getting all users
-23:32:46.876 [http-nio-8080-exec-46] INFO  com.example.UserList.data.dao.UserDAO - Sorting users by column: first_name and order: ASC
+11:13:18.956 [http-nio-8080-exec-31] INFO  com.example.UserList.data.dao.UserDAO - Sorting users by column: first_name and order: ASC
+11:22:05.555 [http-nio-8080-exec-6] INFO  com.example.UserList.data.dao.UserDAO - Getting all users
