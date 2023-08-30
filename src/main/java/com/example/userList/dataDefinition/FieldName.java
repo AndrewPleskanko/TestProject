@@ -1,4 +1,4 @@
-package com.example.UserList.dataDefinition;
+package com.example.userList.dataDefinition;
 
 public final class FieldName {
     private FieldName() {
@@ -22,7 +22,9 @@ public final class FieldName {
     public static final String SORT_ORDER = "sortOrder";
     public static final String PAGE = "page";
     public static final String IS_SORT_ORDER_ASCENDING = "isSortOrderAscending";
-    public static final String FIRST_NAME = "firstName";
-    public static final String LAST_NAME = "lastName";
+    public static final String FIRST_NAME = "first_name";
+    public static final String LAST_NAME = "last_name";
+    public static final String LOGIN_BUTTON = "loginButton";
+    public static final String ASC ="ASC";
 
 }

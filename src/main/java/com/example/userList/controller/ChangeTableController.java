@@ -1,9 +1,7 @@
-package com.example.UserList.controller;
+package com.example.userList.controller;
 
-import com.example.UserList.data.dao.UserDAO;
-import com.example.UserList.data.entity.User;
-import com.example.UserList.dataDefinition.FieldName;
-import com.example.UserList.dataDefinition.ErrorData;
+import com.example.userList.data.dao.UserDAO;
+import com.example.userList.data.entity.User;
 import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -14,9 +12,12 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
+import static com.example.userList.dataDefinition.ErrorData.ERROR_USER_NOT_FOUND;
+import static com.example.userList.dataDefinition.FieldName.*;
+
 @WebServlet("/change")
 public class ChangeTableController extends HttpServlet {
-    UserDAO userDao;
+    private UserDAO userDao;
 
     @Override
     public void init(ServletConfig config) {
@@ -30,28 +31,28 @@ public class ChangeTableController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String action = req.getParameter(FieldName.ACTION);
-        if (FieldName.UPDATE.equals(action)) {
-            int userId = Integer.parseInt(req.getParameter(FieldName.USER_ID));
+        String action = req.getParameter(ACTION);
+        if (UPDATE.equals(action)) {
+            int userId = Integer.parseInt(req.getParameter(USER_ID));
 
             User user = userDao.getUser(userId);
-            req.setAttribute(FieldName.USER, user);
+            req.setAttribute(USER, user);
 
             req.getRequestDispatcher("userUpdate.jsp").forward(req, resp);
-        } else if (FieldName.DELETE.equals(action)) {
-            String userId = req.getParameter(FieldName.USER_ID);
+        } else if (DELETE.equals(action)) {
+            String userId = req.getParameter(USER_ID);
 
             userDao.delete(userId);
 
             resp.sendRedirect("/UserList_war/usersList");
-        } else if (FieldName.SEARCH.equals(action)) {
-            String searchText = req.getParameter(FieldName.SEARCH_TEXT);
+        } else if (SEARCH.equals(action)) {
+            String searchText = req.getParameter(SEARCH_TEXT);
 
-            List<User> USER_LIST = userDao.searchUser(searchText);
-            if (USER_LIST.isEmpty()) {
-                req.setAttribute(FieldName.HINT, ErrorData.ERROR_USER_NOT_FOUND);
+            List<User> users = userDao.searchUser(searchText);
+            if (users.isEmpty()) {
+                req.setAttribute(HINT, ERROR_USER_NOT_FOUND);
             }
-            req.setAttribute(FieldName.USER_LIST, USER_LIST);
+            req.setAttribute(USER_LIST, users);
 
             req.getRequestDispatcher("usersList.jsp").forward(req, resp);
         }

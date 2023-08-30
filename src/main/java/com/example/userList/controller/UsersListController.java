@@ -1,10 +1,9 @@
-package com.example.UserList.controller;
+package com.example.userList.controller;
 
-import com.example.UserList.data.dao.UserDAO;
-import com.example.UserList.data.entity.User;
-import com.example.UserList.dataDefinition.FieldName;
-import com.example.UserList.dto.ResponseDto;
-import com.example.UserList.service.NavigationService;
+import com.example.userList.data.dao.UserDAO;
+import com.example.userList.data.entity.User;
+import com.example.userList.dto.ButtonInfoDto;
+import com.example.userList.service.UserPageService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -15,15 +14,17 @@ import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
+import static com.example.userList.dataDefinition.FieldName.*;
+
 @WebServlet("/usersList")
 public class UsersListController extends HttpServlet {
-    UserDAO userDao;
-    NavigationService navigationService;
+    private UserDAO userDao;
+    private UserPageService navigationService;
 
     @Override
     public void init() {
         userDao = new UserDAO();
-        navigationService = new NavigationService();
+        navigationService = new UserPageService();
     }
 
     @Override
@@ -37,18 +38,18 @@ public class UsersListController extends HttpServlet {
     }
 
     private void processRequest(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String sortColumn = req.getParameter(FieldName.SORT_COLUMN);
-        String sortOrder = req.getParameter(FieldName.SORT_ORDER);
-        String pageParam = req.getParameter(FieldName.PAGE);
+        String sortColumn = req.getParameter(SORT_COLUMN);
+        String sortOrder = req.getParameter(SORT_ORDER);
+        String pageParam = req.getParameter(PAGE);
         Integer page = null;
         if (pageParam != null) {
             page = Integer.valueOf(pageParam);
         }
 
-        boolean isSortOrderAscending = sortColumn != null && sortOrder != null && sortOrder.equals("ASC");
+        boolean isSortOrderAscending = sortColumn != null && sortOrder != null && sortOrder.equals(ASC);
 
         HttpSession session = req.getSession();
-        session.setAttribute(FieldName.IS_SORT_ORDER_ASCENDING, isSortOrderAscending);
+        session.setAttribute(IS_SORT_ORDER_ASCENDING, isSortOrderAscending);
 
         List<User> userList;
 
@@ -58,11 +59,11 @@ public class UsersListController extends HttpServlet {
             userList = userDao.getAllUser();
         }
 
-        ResponseDto responseDto = navigationService.buttonLogic(userList, page);
+        ButtonInfoDto responseDto = navigationService.getCurrentPage(userList, page);
 
-        req.setAttribute(FieldName.CURRENT_PAGE, responseDto.getCurrentPage());
-        req.setAttribute(FieldName.PAGE_COUNT, responseDto.getPage_count());
-        req.setAttribute(FieldName.USER_LIST, responseDto.getUserList());
+        req.setAttribute(CURRENT_PAGE, responseDto.getCurrentPage());
+        req.setAttribute(PAGE_COUNT, responseDto.getPageCount());
+        req.setAttribute(USER_LIST, responseDto.getUserList());
 
         req.getRequestDispatcher("usersList.jsp").forward(req, resp);
     }

@@ -1,10 +1,8 @@
-package com.example.UserList.data.dao;
+package com.example.userList.data.dao;
 
-import com.example.UserList.data.entity.User;
-import com.example.UserList.dataDefinition.ErrorData;
-import com.example.UserList.dataDefinition.InfoData;
-import com.example.UserList.dataDefinition.SqlQueries;
-import com.example.UserList.dbUtils.DBUtils;
+import com.example.userList.data.entity.User;
+import com.example.userList.dataDefinition.SqlQueries;
+import com.example.userList.dbUtils.DBUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -15,6 +13,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.example.userList.dataDefinition.ErrorData.*;
+import static com.example.userList.dataDefinition.InfoData.*;
+import static com.example.userList.dataDefinition.SqlQueries.GET_USER;
+import static com.example.userList.dataDefinition.SqlQueries.SORT_USER;
+
 public class UserDAO implements IUserDAO {
     private static final Logger logger = LogManager.getLogger(UserDAO.class.getName());
 
@@ -23,56 +26,56 @@ public class UserDAO implements IUserDAO {
     @Override
     public List<User> getAllUser() {
         String query = SqlQueries.GET_ALL_USERS;
-        logger.info(InfoData.GETTING_ALL_USERS);
+        logger.info(GETTING_ALL_USERS);
         return executeUserQuery(query, null);
     }
 
     @Override
     public List<User> sortUser(String sortColumn, String sortOrder) {
-        String query = SqlQueries.SORT_USER + sortColumn + " " + sortOrder;
-        logger.info(InfoData.LOG_SORTING_USERS, sortColumn, sortOrder);
+        String query = SORT_USER + sortColumn + " " + sortOrder;
+        logger.info(LOG_SORTING_USERS, sortColumn, sortOrder);
         return executeUserQuery(query, null);
     }
 
     @Override
     public User getUser(int id) {
-        String query = SqlQueries.GET_USER + id;
+        String query = GET_USER + id;
         List<User> users = executeUserQuery(query, null);
-        logger.info(InfoData.LOG_GETTING_USER, id);
+        logger.info(LOG_GETTING_USER, id);
         return users.isEmpty() ? null : users.get(0);
     }
 
     @Override
     public void create(String name, String surname, String login, String password) {
         String query = SqlQueries.INSERT_USER;
-        logger.info(InfoData.LOG_CREATING_USER, name, surname, login);
+        logger.info(LOG_CREATING_USER, name, surname, login);
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setString(1, name);
             statement.setString(2, surname);
             statement.setString(3, login);
             statement.setString(4, password);
             statement.executeUpdate();
-            logger.info(InfoData.LOG_USER_CREATED_SUCCESSFULLY);
+            logger.info(LOG_USER_CREATED_SUCCESSFULLY);
         } catch (SQLException e) {
-            logger.error(ErrorData.LOG_ERROR_CREATING_USER, e);
+            logger.error(LOG_ERROR_CREATING_USER, e);
         }
     }
 
     @Override
     public void delete(String id) {
         String query = SqlQueries.DELETE;
-        logger.info(InfoData.LOG_DELETING_USER, id);
+        logger.info(LOG_DELETING_USER, id);
         try (PreparedStatement statement = connection.prepareStatement(query + id)) {
             statement.executeUpdate();
         } catch (SQLException e) {
-            logger.error(ErrorData.LOG_ERROR_DELETING_USER, e);
+            logger.error(LOG_ERROR_DELETING_USER, e);
         }
     }
 
     @Override
     public void update(int userId, String firstName, String lastName, String login, String password) {
         String query = SqlQueries.UPDATE_USER;
-        logger.info(InfoData.LOG_UPDATING_USER, userId);
+        logger.info(LOG_UPDATING_USER, userId);
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setString(1, firstName);
             statement.setString(2, lastName);
@@ -80,9 +83,9 @@ public class UserDAO implements IUserDAO {
             statement.setString(4, password);
             statement.setInt(5, userId);
             statement.executeUpdate();
-            logger.info(InfoData.LOG_USER_UPDATED_SUCCESSFULLY);
+            logger.info(LOG_USER_UPDATED_SUCCESSFULLY);
         } catch (SQLException e) {
-            logger.error(ErrorData.LOG_ERROR_UPDATING_USER, e);
+            logger.error(LOG_ERROR_UPDATING_USER, e);
         }
     }
 
@@ -99,14 +102,14 @@ public class UserDAO implements IUserDAO {
                 return count > 0;
             }
         } catch (SQLException e) {
-            logger.error(ErrorData.LOG_ERROR_CHECKING_USER_EXISTENCE, e);
+            logger.error(LOG_ERROR_CHECKING_USER_EXISTENCE, e);
         }
         return false;
     }
 
     @Override
     public boolean isEmailExist(String email) {
-        logger.info(InfoData.LOG_CHECKING_USER_EMAIL_EXISTENCE, email);
+        logger.info(LOG_CHECKING_USER_EMAIL_EXISTENCE, email);
         String query = SqlQueries.IS_EMAIL_EXIST;
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setString(1, email);
@@ -116,7 +119,7 @@ public class UserDAO implements IUserDAO {
                 return userCount >= 1;
             }
         } catch (SQLException e) {
-            logger.error(ErrorData.LOG_ERROR_CHECKING_EMAIL_EXISTENCE, e);
+            logger.error(LOG_ERROR_CHECKING_EMAIL_EXISTENCE, e);
         }
         return false;
     }
@@ -124,7 +127,7 @@ public class UserDAO implements IUserDAO {
     @Override
     public List<User> searchUser(String data) {
         String query = SqlQueries.SEARCH_USER;
-        logger.info(InfoData.LOG_SEARCHING_USERS, data);
+        logger.info(LOG_SEARCHING_USERS, data);
         return executeUserQuery(query, data);
     }
 
@@ -146,7 +149,7 @@ public class UserDAO implements IUserDAO {
                 users.add(new User(id, first_name, last_name, login, password));
             }
         } catch (SQLException e) {
-            logger.error(ErrorData.LOG_ERROR_CREATING_USER, e);
+            logger.error(LOG_ERROR_CREATING_USER, e);
         }
         return users;
     }

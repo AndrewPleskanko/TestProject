@@ -1,4 +1,4 @@
-package com.example.UserList.dataDefinition;
+package com.example.userList.dataDefinition;
 
 public interface SqlQueries {
     String GET_ALL_USERS = "SELECT * FROM users";

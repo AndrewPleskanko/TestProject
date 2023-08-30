@@ -1,4 +1,4 @@
-package com.example.UserList.dataDefinition;
+package com.example.userList.dataDefinition;
 
 public interface InfoData {
     String GETTING_ALL_USERS = "Getting all users";

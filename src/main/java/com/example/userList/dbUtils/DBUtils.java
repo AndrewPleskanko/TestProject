@@ -1,6 +1,6 @@
-package com.example.UserList.dbUtils;
+package com.example.userList.dbUtils;
 
-import com.example.UserList.dataDefinition.ErrorData;
+import com.example.userList.exception.NoConnectionException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -10,6 +10,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
+
+import static com.example.userList.dataDefinition.ErrorData.*;
 
 public class DBUtils {
     private static final Logger logger = LogManager.getLogger(DBUtils.class.getName());
@@ -30,14 +32,19 @@ public class DBUtils {
             dbPassword = properties.getProperty("db_password");
 
         } catch (IOException | ClassNotFoundException e) {
-            logger.error(ErrorData.ERROR_LOADING_DATABASE_PROPERTIES, e);
+            logger.error(ERROR_LOADING_DATABASE_PROPERTIES, e);
         }
 
         Connection connection = null;
         try {
             connection = DriverManager.getConnection(dbUrl, dbUsername, dbPassword);
+            if (connection == null) {
+                throw new NoConnectionException(ERROR_CONNECTION_DATABASE);
+            }
         } catch (SQLException e) {
-            logger.error(ErrorData.ERROR_CONNECTING_TO_DATABASE, e);
+            logger.error(ERROR_CONNECTING_TO_DATABASE, e);
+        } catch (NoConnectionException e) {
+            logger.error(ERROR_CONNECTION_DATABASE, e);
         }
 
         return connection;

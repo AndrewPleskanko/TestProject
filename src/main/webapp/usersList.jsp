@@ -1,5 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page import="com.example.UserList.dataDefinition.FieldName" %>
+<%@ page import="com.example.userList.dataDefinition.FieldName" %>
 <!DOCTYPE html>
 <html>
 <head>

@@ -1,12 +1,13 @@
-package com.example.UserList.filter;
+package com.example.userList.dataDefinition.filter;
 
-import com.example.UserList.dataDefinition.FieldName;
 import jakarta.servlet.*;
 import jakarta.servlet.annotation.WebFilter;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
+
+import static com.example.userList.dataDefinition.FieldName.LOGIN;
 
 @WebFilter({"/usersList", "/change", "/update"})
 public class AccessFilter implements Filter {
@@ -15,7 +16,7 @@ public class AccessFilter implements Filter {
         HttpServletRequest httpRequest = (HttpServletRequest) request;
 
         HttpSession session = httpRequest.getSession();
-        String login = (String) session.getAttribute(FieldName.LOGIN);
+        String login = (String) session.getAttribute(LOGIN);
 
         if (login == null) {
             RequestDispatcher dispatcher = request.getRequestDispatcher("/UserList_war/userRegister.jsp");

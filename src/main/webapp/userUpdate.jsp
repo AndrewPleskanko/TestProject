@@ -21,12 +21,12 @@
                 <div class="row">
                     <div class="col-md-12">
                         <label class="col-form-label">First Name</label>
-                        <input type="text" name="firstName" class="form-control" value="${user.first_name}"/>
+                        <input type="text" name="first_name" class="form-control" value="${user.first_name}"/>
                     </div>
                     <p class="col-md-12 offset-md-3"> ${errorName} </p>
                     <div class="col-md-12">
                         <label class="col-form-label">Last Name</label>
-                        <input type="text" name="lastName" class="form-control" value="${user.last_name}"/>
+                        <input type="text" name="last_name" class="form-control" value="${user.last_name}"/>
                     </div>
                     <p class="col-md-12 offset-md-3"> ${errorSurname} </p>
                 </div>

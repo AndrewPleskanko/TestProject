@@ -1,6 +1,6 @@
-package com.example.UserList.data.dao;
+package com.example.userList.data.dao;
 
-import com.example.UserList.data.entity.User;
+import com.example.userList.data.entity.User;
 
 import java.util.List;
 

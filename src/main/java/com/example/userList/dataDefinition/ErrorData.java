@@ -1,4 +1,4 @@
-package com.example.UserList.dataDefinition;
+package com.example.userList.dataDefinition;
 
 public interface ErrorData {
 
@@ -19,5 +19,6 @@ public interface ErrorData {
     String ERROR_SURNAME = "errorSurname";
     String ERROR_LOGIN = "errorLogin";
     String ERROR_PASSWORD = "errorPassword";
+    String ERROR_CONNECTION_DATABASE = "No connection to the database";
 
 }

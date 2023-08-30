@@ -1,4 +1,4 @@
-package com.example.UserList.service;
+package com.example.userList.service;
 
 public interface ICheckCorrectDateService {
     boolean isValidLogin(String email);

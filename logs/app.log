@@ -17,16 +17,139 @@
 14:01:10.320 [http-nio-8080-exec-32] INFO  com.example.USER_LIST .data.dao.UserDAO - Sorting users by column: first_name and order: DESC
 14:01:16.227 [http-nio-8080-exec-33] INFO  com.example.USER_LIST .data.dao.UserDAO - Searching for users with data: oleg
 14:03:21.035 [http-nio-8080-exec-32] INFO  com.example.USER_LIST .data.dao.UserDAO - Getting all users
-18:01:02.165 [http-nio-8080-exec-107] INFO  com.example.UserList.data.dao.UserDAO - Getting all users
-18:01:05.024 [http-nio-8080-exec-116] INFO  com.example.UserList.data.dao.UserDAO - Getting all users
-18:01:06.504 [http-nio-8080-exec-111] INFO  com.example.UserList.data.dao.UserDAO - Getting all users
-18:01:08.221 [http-nio-8080-exec-113] INFO  com.example.UserList.data.dao.UserDAO - Getting all users
-18:34:33.478 [http-nio-8080-exec-119] INFO  com.example.UserList.data.dao.UserDAO - Creating user with name: 1QFG, surname: 1DFD, login: FDF@gmail.com
-18:34:33.484 [http-nio-8080-exec-119] INFO  com.example.UserList.data.dao.UserDAO - User created successfully
-18:34:54.403 [http-nio-8080-exec-122] INFO  com.example.UserList.data.dao.UserDAO - Getting all users
-18:34:56.797 [http-nio-8080-exec-123] INFO  com.example.UserList.data.dao.UserDAO - Getting all users
-18:45:43.339 [http-nio-8080-exec-122] INFO  com.example.UserList.data.dao.UserDAO - Getting all users
-18:45:51.698 [http-nio-8080-exec-127] INFO  com.example.UserList.data.dao.UserDAO - Getting all users
-18:47:50.196 [http-nio-8080-exec-139] INFO  com.example.UserList.data.dao.UserDAO - Getting all users
-18:50:19.932 [http-nio-8080-exec-145] INFO  com.example.UserList.data.dao.UserDAO - Getting all users
-19:10:27.515 [http-nio-8080-exec-23] INFO  com.example.UserList.data.dao.UserDAO - Getting all users
+18:01:02.165 [http-nio-8080-exec-107] INFO  com.example.userList.data.dao.UserDAO - Getting all users
+18:01:05.024 [http-nio-8080-exec-116] INFO  com.example.userList.data.dao.UserDAO - Getting all users
+18:01:06.504 [http-nio-8080-exec-111] INFO  com.example.userList.data.dao.UserDAO - Getting all users
+18:01:08.221 [http-nio-8080-exec-113] INFO  com.example.userList.data.dao.UserDAO - Getting all users
+18:34:33.478 [http-nio-8080-exec-119] INFO  com.example.userList.data.dao.UserDAO - Creating user with name: 1QFG, surname: 1DFD, login: FDF@gmail.com
+18:34:33.484 [http-nio-8080-exec-119] INFO  com.example.userList.data.dao.UserDAO - User created successfully
+18:34:54.403 [http-nio-8080-exec-122] INFO  com.example.userList.data.dao.UserDAO - Getting all users
+18:34:56.797 [http-nio-8080-exec-123] INFO  com.example.userList.data.dao.UserDAO - Getting all users
+18:45:43.339 [http-nio-8080-exec-122] INFO  com.example.userList.data.dao.UserDAO - Getting all users
+18:45:51.698 [http-nio-8080-exec-127] INFO  com.example.userList.data.dao.UserDAO - Getting all users
+18:47:50.196 [http-nio-8080-exec-139] INFO  com.example.userList.data.dao.UserDAO - Getting all users
+18:50:19.932 [http-nio-8080-exec-145] INFO  com.example.userList.data.dao.UserDAO - Getting all users
+19:10:27.515 [http-nio-8080-exec-23] INFO  com.example.userList.data.dao.UserDAO - Getting all users
+20:59:36.300 [http-nio-8080-exec-5] INFO  com.example.userList.data.dao.UserDAO - Getting all users
+21:00:14.147 [http-nio-8080-exec-11] INFO  com.example.userList.data.dao.UserDAO - Getting all users
+21:00:20.139 [http-nio-8080-exec-12] INFO  com.example.userList.data.dao.UserDAO - Searching for users with data: Oleg
+21:00:29.125 [http-nio-8080-exec-13] INFO  com.example.userList.data.dao.UserDAO - Sorting users by column: first_name and order: ASC
+21:00:34.396 [http-nio-8080-exec-6] INFO  com.example.userList.data.dao.UserDAO - Sorting users by column: last_name and order: DESC
+21:00:47.245 [http-nio-8080-exec-7] INFO  com.example.userList.data.dao.UserDAO - Sorting users by column: last_name and order: ASC
+21:00:48.323 [http-nio-8080-exec-9] INFO  com.example.userList.data.dao.UserDAO - Sorting users by column: last_name and order: DESC
+21:00:50.782 [http-nio-8080-exec-2] INFO  com.example.userList.data.dao.UserDAO - Sorting users by column: login and order: ASC
+21:00:52.573 [http-nio-8080-exec-10] INFO  com.example.userList.data.dao.UserDAO - Sorting users by column: login and order: DESC
+21:01:10.259 [http-nio-8080-exec-14] INFO  com.example.userList.data.dao.UserDAO - Getting all users
+21:01:14.810 [http-nio-8080-exec-11] INFO  com.example.userList.data.dao.UserDAO - Searching for users with data: sina
+21:01:28.786 [http-nio-8080-exec-12] INFO  com.example.userList.data.dao.UserDAO - Searching for users with data: Oleg
+21:02:04.080 [http-nio-8080-exec-16] INFO  com.example.userList.data.dao.UserDAO - Getting user with ID: 20
+23:40:22.230 [http-nio-8080-exec-7] INFO  com.example.userList.data.dao.UserDAO - Creating user with name: Andrii, surname: Pleskanko, login: pleskankoandriy@gmail.com
+23:40:22.317 [http-nio-8080-exec-7] INFO  com.example.userList.data.dao.UserDAO - User created successfully
+23:40:31.723 [http-nio-8080-exec-8] INFO  com.example.userList.data.dao.UserDAO - Getting all users
+23:40:35.035 [http-nio-8080-exec-9] INFO  com.example.userList.data.dao.UserDAO - Getting all users
+23:40:37.695 [http-nio-8080-exec-10] INFO  com.example.userList.data.dao.UserDAO - Getting all users
+23:41:06.331 [http-nio-8080-exec-2] INFO  com.example.userList.data.dao.UserDAO - Getting all users
+23:41:08.092 [http-nio-8080-exec-3] INFO  com.example.userList.data.dao.UserDAO - Getting all users
+00:00:13.755 [http-nio-8080-exec-22] INFO  com.example.userList.data.dao.UserDAO - Creating user with name: Andrii, surname: Pleskanko, login: pleskankoandriy@gmail.com
+00:00:13.824 [http-nio-8080-exec-22] ERROR com.example.userList.data.dao.UserDAO - Error creating user
+org.postgresql.util.PSQLException: �������: ���������� �������� ����� ��������� ��������� ���������� "users_login_key"
+  Detail: ���� (login)=(pleskankoandriy@gmail.com) ��� ����.
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2713) ~[postgresql-42.6.0.jar:42.6.0]
+	at org.postgresql.core.v3.QueryExecutorImpl.processResults(QueryExecutorImpl.java:2401) ~[postgresql-42.6.0.jar:42.6.0]
+	at org.postgresql.core.v3.QueryExecutorImpl.execute(QueryExecutorImpl.java:368) ~[postgresql-42.6.0.jar:42.6.0]
+	at org.postgresql.jdbc.PgStatement.executeInternal(PgStatement.java:498) ~[postgresql-42.6.0.jar:?]
+	at org.postgresql.jdbc.PgStatement.execute(PgStatement.java:415) ~[postgresql-42.6.0.jar:?]
+	at org.postgresql.jdbc.PgPreparedStatement.executeWithFlags(PgPreparedStatement.java:190) ~[postgresql-42.6.0.jar:?]
+	at org.postgresql.jdbc.PgPreparedStatement.executeUpdate(PgPreparedStatement.java:152) ~[postgresql-42.6.0.jar:?]
+	at com.example.userList.data.dao.UserDAO.create(UserDAO.java:57) [classes/:?]
+	at com.example.userList.controller.RegistrationController.doGet(RegistrationController.java:38) [classes/:?]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:564) [servlet-api.jar:6.0]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658) [servlet-api.jar:6.0]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205) [catalina.jar:10.1.11]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) [catalina.jar:10.1.11]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51) [tomcat-websocket.jar:10.1.11]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) [catalina.jar:10.1.11]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) [catalina.jar:10.1.11]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:166) [catalina.jar:10.1.11]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90) [catalina.jar:10.1.11]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482) [catalina.jar:10.1.11]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115) [catalina.jar:10.1.11]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93) [catalina.jar:10.1.11]
+	at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:676) [catalina.jar:10.1.11]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) [catalina.jar:10.1.11]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:341) [catalina.jar:10.1.11]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:391) [tomcat-coyote.jar:10.1.11]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) [tomcat-coyote.jar:10.1.11]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:894) [tomcat-coyote.jar:10.1.11]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1740) [tomcat-coyote.jar:10.1.11]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) [tomcat-coyote.jar:10.1.11]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191) [tomcat-util.jar:10.1.11]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) [tomcat-util.jar:10.1.11]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) [tomcat-util.jar:10.1.11]
+	at java.lang.Thread.run(Thread.java:831) [?:?]
+00:00:18.955 [http-nio-8080-exec-20] INFO  com.example.userList.data.dao.UserDAO - Getting all users
+00:00:21.444 [http-nio-8080-exec-19] INFO  com.example.userList.data.dao.UserDAO - Getting all users
+00:00:23.211 [http-nio-8080-exec-17] INFO  com.example.userList.data.dao.UserDAO - Getting all users
+00:05:46.861 [http-nio-8080-exec-28] INFO  com.example.userList.data.dao.UserDAO - Creating user with name: Andrii, surname: Pleskanko, login: gg@gmail.com
+00:05:46.901 [http-nio-8080-exec-28] INFO  com.example.userList.data.dao.UserDAO - User created successfully
+00:05:51.849 [http-nio-8080-exec-26] INFO  com.example.userList.data.dao.UserDAO - Getting all users
+00:05:54.130 [http-nio-8080-exec-22] INFO  com.example.userList.data.dao.UserDAO - Getting all users
+00:06:02.590 [http-nio-8080-exec-23] INFO  com.example.userList.data.dao.UserDAO - Searching for users with data: Andrii
+00:06:08.360 [http-nio-8080-exec-13] INFO  com.example.userList.data.dao.UserDAO - Sorting users by column: first_name and order: ASC
+00:06:09.320 [http-nio-8080-exec-24] INFO  com.example.userList.data.dao.UserDAO - Sorting users by column: first_name and order: DESC
+00:06:10.317 [http-nio-8080-exec-32] INFO  com.example.userList.data.dao.UserDAO - Sorting users by column: first_name and order: ASC
+00:06:13.948 [http-nio-8080-exec-30] INFO  com.example.userList.data.dao.UserDAO - Getting all users
+00:06:15.625 [http-nio-8080-exec-31] INFO  com.example.userList.data.dao.UserDAO - Getting all users
+00:06:21.531 [http-nio-8080-exec-33] INFO  com.example.userList.data.dao.UserDAO - Searching for users with data:
+00:06:29.173 [http-nio-8080-exec-34] INFO  com.example.userList.data.dao.UserDAO - Getting all users
+12:04:24.504 [http-nio-8080-exec-138] INFO  com.example.userList.data.dao.UserDAO - Getting all users
+12:04:26.909 [http-nio-8080-exec-139] INFO  com.example.userList.data.dao.UserDAO - Getting all users
+12:04:28.485 [http-nio-8080-exec-148] INFO  com.example.userList.data.dao.UserDAO - Getting all users
+12:04:30.906 [http-nio-8080-exec-146] INFO  com.example.userList.data.dao.UserDAO - Getting all users
+12:04:34.565 [http-nio-8080-exec-141] INFO  com.example.userList.data.dao.UserDAO - Getting all users
+12:04:36.567 [http-nio-8080-exec-147] INFO  com.example.userList.data.dao.UserDAO - Getting all users
+12:04:38.585 [http-nio-8080-exec-144] INFO  com.example.userList.data.dao.UserDAO - Getting all users
+12:04:40.258 [http-nio-8080-exec-142] INFO  com.example.userList.data.dao.UserDAO - Getting all users
+12:04:41.697 [http-nio-8080-exec-145] INFO  com.example.userList.data.dao.UserDAO - Getting all users
+12:04:43.555 [http-nio-8080-exec-143] INFO  com.example.userList.data.dao.UserDAO - Getting all users
+12:04:45.260 [http-nio-8080-exec-149] INFO  com.example.userList.data.dao.UserDAO - Sorting users by column: first_name and order: ASC
+12:04:46.367 [http-nio-8080-exec-150] INFO  com.example.userList.data.dao.UserDAO - Sorting users by column: first_name and order: DESC
+12:05:17.729 [http-nio-8080-exec-152] INFO  com.example.userList.data.dao.UserDAO - Deleting user with ID: 155
+12:05:17.748 [http-nio-8080-exec-153] INFO  com.example.userList.data.dao.UserDAO - Getting all users
+12:05:19.235 [http-nio-8080-exec-154] INFO  com.example.userList.data.dao.UserDAO - Searching for users with data: chachi
+12:05:22.754 [http-nio-8080-exec-155] INFO  com.example.userList.data.dao.UserDAO - Getting all users
+12:05:25.222 [http-nio-8080-exec-156] INFO  com.example.userList.data.dao.UserDAO - Sorting users by column: first_name and order: ASC
+12:05:25.981 [http-nio-8080-exec-157] INFO  com.example.userList.data.dao.UserDAO - Sorting users by column: first_name and order: DESC
+12:05:26.864 [http-nio-8080-exec-158] INFO  com.example.userList.data.dao.UserDAO - Sorting users by column: first_name and order: ASC
+12:21:42.434 [http-nio-8080-exec-9] INFO  com.example.userList.data.dao.UserDAO - Getting all users
+12:21:46.532 [http-nio-8080-exec-10] INFO  com.example.userList.data.dao.UserDAO - Getting all users
+12:21:47.885 [http-nio-8080-exec-1] INFO  com.example.userList.data.dao.UserDAO - Getting all users
+12:22:00.251 [http-nio-8080-exec-2] INFO  com.example.userList.data.dao.UserDAO - Sorting users by column: first_name and order: ASC
+12:22:01.133 [http-nio-8080-exec-3] INFO  com.example.userList.data.dao.UserDAO - Sorting users by column: first_name and order: DESC
+12:22:05.329 [http-nio-8080-exec-4] INFO  com.example.userList.data.dao.UserDAO - Getting user with ID: 154
+12:29:42.634 [http-nio-8080-exec-14] INFO  com.example.userList.data.dao.UserDAO - Getting all users
+12:29:46.304 [http-nio-8080-exec-2] INFO  com.example.userList.data.dao.UserDAO - Getting user with ID: 161
+12:30:00.760 [http-nio-8080-exec-5] INFO  com.example.userList.data.dao.UserDAO - Getting user with ID: 161
+12:39:50.163 [http-nio-8080-exec-13] INFO  com.example.userList.data.dao.UserDAO - Getting all users
+12:39:51.982 [http-nio-8080-exec-20] INFO  com.example.userList.data.dao.UserDAO - Getting user with ID: 161
+12:47:25.426 [http-nio-8080-exec-28] INFO  com.example.userList.data.dao.UserDAO - Getting all users
+12:47:27.047 [http-nio-8080-exec-30] INFO  com.example.userList.data.dao.UserDAO - Getting user with ID: 161
+12:48:49.540 [http-nio-8080-exec-37] INFO  com.example.userList.data.dao.UserDAO - Getting all users
+12:48:53.578 [http-nio-8080-exec-22] INFO  com.example.userList.data.dao.UserDAO - Getting user with ID: 161
+13:09:29.868 [http-nio-8080-exec-42] INFO  com.example.userList.data.dao.UserDAO - Getting all users
+13:09:32.379 [http-nio-8080-exec-47] INFO  com.example.userList.data.dao.UserDAO - Getting user with ID: 161
+13:12:20.089 [http-nio-8080-exec-53] INFO  com.example.userList.data.dao.UserDAO - Getting all users
+13:12:22.525 [http-nio-8080-exec-39] INFO  com.example.userList.data.dao.UserDAO - Getting user with ID: 161
+13:33:41.257 [http-nio-8080-exec-58] INFO  com.example.userList.data.dao.UserDAO - Getting user with ID: 161
+13:33:42.402 [http-nio-8080-exec-59] INFO  com.example.userList.data.dao.UserDAO - Updating user with ID: 161
+13:33:42.422 [http-nio-8080-exec-59] INFO  com.example.userList.data.dao.UserDAO - User updated successfully
+13:33:42.422 [http-nio-8080-exec-59] INFO  com.example.userList.data.dao.UserDAO - Getting all users
+13:33:44.639 [http-nio-8080-exec-60] INFO  com.example.userList.data.dao.UserDAO - Getting user with ID: 32
+13:33:47.815 [http-nio-8080-exec-61] INFO  com.example.userList.data.dao.UserDAO - Updating user with ID: 32
+13:33:47.822 [http-nio-8080-exec-61] INFO  com.example.userList.data.dao.UserDAO - User updated successfully
+13:33:47.823 [http-nio-8080-exec-61] INFO  com.example.userList.data.dao.UserDAO - Getting all users
+13:33:50.749 [http-nio-8080-exec-62] INFO  com.example.userList.data.dao.UserDAO - Getting user with ID: 162
+13:33:56.773 [http-nio-8080-exec-63] INFO  com.example.userList.data.dao.UserDAO - Updating user with ID: 162
+13:33:56.779 [http-nio-8080-exec-63] INFO  com.example.userList.data.dao.UserDAO - User updated successfully
+13:33:56.781 [http-nio-8080-exec-63] INFO  com.example.userList.data.dao.UserDAO - Getting all users
+13:33:58.572 [http-nio-8080-exec-64] INFO  com.example.userList.data.dao.UserDAO - Searching for users with data: sinaaa

@@ -1,9 +1,10 @@
-package com.example.UserList.controller;
+package com.example.userList.controller;
 
 
-import com.example.UserList.service.DataGetAndSet;
-import com.example.UserList.data.dao.UserDAO;
-import com.example.UserList.service.ValidateService;
+import com.example.userList.dto.UserDto;
+import com.example.userList.data.dao.UserDAO;
+import com.example.userList.service.ValidateService;
+import jakarta.servlet.ServletConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -15,25 +16,26 @@ import java.io.IOException;
 @WebServlet("/register")
 public class RegistrationController extends HttpServlet {
 
+    private UserDAO userDao;
+
+    @Override
+    public void init(ServletConfig config) {
+        userDao = new UserDAO();
+    }
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        DataGetAndSet dataGetAndSet = new DataGetAndSet();
-        String[] data = dataGetAndSet.getAndSet(request);
-
-        String firstName = data[0];
-        String lastName = data[1];
-        String login = data[2];
-        String password = data[3];
+        UserDto userDto = new UserDto(request);
 
         ValidateService validateService = new ValidateService();
-        if (validateService.validateData(firstName, lastName, login, password, request)) {
+        if (validateService.validateData(userDto.getFirstName(), userDto.getLastName(), userDto.getLogin(), userDto.getPassword(), request)) {
             request.getRequestDispatcher("userRegister.jsp").forward(request, response);
             return;
         }
-        UserDAO userDao = new UserDAO();
-        userDao.create(firstName, lastName, login, password);
+
+        userDao.create(userDto.getFirstName(), userDto.getLastName(), userDto.getLogin(), userDto.getPassword());
         request.getRequestDispatcher("logIn.jsp").forward(request, response);
     }
 

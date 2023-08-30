@@ -7,7 +7,7 @@
     <groupId>com.example</groupId>
     <artifactId>UserList</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <name>UserList</name>
+    <name>userList</name>
     <packaging>war</packaging>
 
     <properties>

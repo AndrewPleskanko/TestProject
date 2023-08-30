@@ -1,4 +1,4 @@
-package com.example.UserList.controller;
+package com.example.userList.controller;
 
 
 import jakarta.servlet.ServletException;

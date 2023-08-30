@@ -14,15 +14,15 @@
 
 <div class="container mt-5">
     <h1 class="text-center">Employee Register Form</h1>
-    <form action="${pageContext.request.contextPath}/register" method="GET" class="mt-4">
+    <form action="${pageContext.request.contextPath}/register" method="GET" class="d-flex flex-column">
         <div class="form-group">
-            <label for="firstName">First Name</label>
-            <input type="text" class="form-control" name="firstName" id="firstName" value="${firstName}">
+            <label for="first_name">First Name</label>
+            <input type="text" class="form-control" name="first_name" id="first_name" value="${firstName}">
             <p class="text-danger">${errorName}</p>
         </div>
         <div class="form-group">
-            <label for="lastName">Last Name</label>
-            <input type="text" class="form-control" name="lastName" id="lastName" value="${lastName}">
+            <label for="last_name">Last Name</label>
+            <input type="text" class="form-control" name="last_name" id="last_name" value="${lastName}">
             <p class="text-danger">${errorSurname}</p>
         </div>
         <div class="form-group">
@@ -37,9 +37,9 @@
         </div>
         <button type="submit" class="btn btn-primary btn-block">Create user</button>
     </form>
-    <form action="${pageContext.request.contextPath}/logIn" method="GET" class="mt-4">
-    <input type="hidden" name="logIN" value="logIN">
-    <button type="submit" class="btn btn-secondary btn-block">Log in</button>
+    <form action="${pageContext.request.contextPath}/logIn" method="GET" class="mt-2">
+        <input type="hidden" name="loginButton" value="loginButton">
+        <button type="submit" class="btn btn-secondary btn-block">Log in</button>
     </form>
 </div>
 
